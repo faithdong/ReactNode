@@ -33,13 +33,15 @@ class Register extends React.Component{
         <WingBlank>
           <List >
             <InputItem>手机号码</InputItem>
+            <WhiteSpace />
             <InputItem>密码</InputItem>
+            <WhiteSpace />
             <InputItem>确认密码</InputItem>
             <WhiteSpace />
-            <RadioItem checked={this.state.type=='genius'}>牛人</RadioItem>
-            <RadioItem checked={this.state.type=='boss'}>BOSS</RadioItem>
+            <RadioItem checked={this.state.type==='genius'}>牛人</RadioItem>
+            <WhiteSpace />
+            <RadioItem checked={this.state.type==='boss'}>BOSS</RadioItem>
           </List>
-          <Button type='primary'>登录</Button>
           <WhiteSpace />
           <Button type='primary' onClick={this.register}>注册</Button>
         </WingBlank>

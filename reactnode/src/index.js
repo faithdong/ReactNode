@@ -25,6 +25,7 @@ import './config';
 import Login from './container/login/login';
 import Register from './container/register/register';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
+import  AuthRoute from './component/authroute/authroute';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
@@ -34,12 +35,17 @@ const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(thunk))
 );
+function Boss(){
+  return <h1>Boss</h1>
+}
 
 ReactDom.render(
   (
     <Provider store={store}>
       <BrowserRouter>
         <div>
+          <AuthRoute></AuthRoute>
+          <Route path='/boss' component={Boss}></Route>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
         </div>
