@@ -15,8 +15,10 @@
     "babel-plugin-named-asset-import": "^0.3.1",
     "babel-preset-react-app": "^7.0.1",
     "bfj": "6.1.1",
+    "body-parser": "^1.18.3",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "cookie-parse": "^0.4.0",
+    "cookie-parser": "^1.4.4",
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
@@ -59,6 +61,7 @@
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "1.2.2",
     "url-loader": "1.1.2",
+    "utility": "^1.15.0",
     "webpack": "4.28.3",
     "webpack-dev-server": "3.1.14",
     "webpack-manifest-plugin": "2.0.4",
@@ -129,12 +132,12 @@
     ],
     "plugins": [
       [
-        "import", 
+        "import",
         {
           "libraryName": "antd-mobile",
-          "style": "css" 
+          "style": "css"
         }
-      ], 
+      ],
       [
         "@babel/plugin-proposal-decorators",
         {

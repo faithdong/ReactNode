@@ -26,6 +26,7 @@ import Login from './container/login/login';
 import Register from './container/register/register';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 import  AuthRoute from './component/authroute/authroute';
+import './index.css';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;

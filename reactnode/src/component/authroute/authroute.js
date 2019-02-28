@@ -2,16 +2,21 @@
  * @Author: zhongxd 
  * @Date: 2019-02-27 20:44:40 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-02-27 21:36:07
+ * @Last Modified time: 2019-02-28 15:49:38
  */
 
 
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 @withRouter
+@connect(
+  state=>state,
+  {}
+)
 class AuthRoute extends React.Component {
 	componentDidMount() {
 		const publicList = ['/login','/register'];
@@ -33,9 +38,7 @@ class AuthRoute extends React.Component {
 	}
 
 	render(){
-		return(
-			<p>判断跳转的地方</p>
-		)
+		return null;
 	}
 
 }
