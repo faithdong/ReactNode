@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-02-28 10:53:03 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-04 18:19:46
+ * @Last Modified time: 2019-03-04 23:43:25
  */
 
 import axios from 'axios';
@@ -11,6 +11,7 @@ const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
+const AUTH_SUCCESS = 'AUTH_SUCCESS';
 
 const initState = {
   redirectTo: '',
@@ -27,6 +28,8 @@ export function user(state = initState, action) {
       return { ...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload };
     case LOGIN_SUCCESS:
       return {...state , msg:'' , redirectTo:getRedirectPath(action.payload) , isAuth:true, ...action.payload};
+    case AUTH_SUCCESS:
+      return {...state,msg:'',redirectTo:getRedirectPath(action.payload) , isAuth:true, ...action.payload}
     case LOAD_DATA:
       return { ...state,  ...action.payload };
     case ERROR_MSG:
@@ -47,6 +50,10 @@ function errorMsg(msg) {
 
 function registerSuccess(data) {
   return { type: 'REGISTER_SUCCESS', payload: data };
+}
+
+function authSuccess(data){
+  return {type:'AUTH_SUCCESS',payload:data};
 }
 
 export function login({user, pwd}){
@@ -99,4 +106,16 @@ export function userinfo(){
 
 export function loadData(userinfo){
   return {type:LOAD_DATA,payload:userinfo};
+}
+
+export function update(data){
+  return dispatch=>{
+    axios.post('/user/update', data).then( res=>{
+      if (res.status === 200 && res.data.code === 0) {
+        dispatch(authSuccess(res.data.data));
+      } else {
+        dispatch(errorMsg(res.data.msg));
+      }
+    })
+  }
 }

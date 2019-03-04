@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-02-28 11:48:00 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-04 19:07:01
+ * @Last Modified time: 2019-03-04 23:57:22
  */
 
 
@@ -60,8 +60,11 @@ Router.post('/login',function(req,res){
   })
 });
 
+/**
+ * 用户信息
+ */
 Router.get('/info',function(req,res){
-  const { userid } = req.cookies;
+  const { userid } = req.cookies.userid;
   if(!userid){
     return res.json({code:1});
   }
@@ -74,5 +77,21 @@ Router.get('/info',function(req,res){
     }
   })
 });
+
+Router.post('/update',function(req,res){
+  const { userid } = req.cookies; //获取cookie
+  if(!userid){
+    return res.json({code:1});
+  }
+  //const { avatar , company , desc , money , title } = req.body; 
+  const body = req.body;
+  User.findByIdAndUpdate(userid,body,function(err,doc){
+    const data = Object.assign({},{
+      user:doc.user,
+      type:doc.type
+    },body);
+    return res.json({code:0,data});
+  })
+})
 
 module.exports = Router;
