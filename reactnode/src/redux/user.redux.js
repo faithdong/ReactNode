@@ -27,11 +27,11 @@ export function user(state = initState, action) {
     case REGISTER_SUCCESS:
       return { ...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload };
     case LOGIN_SUCCESS:
-      return {...state , msg:'' , redirectTo:getRedirectPath(action.payload) , isAuth:true, ...action.payload};
+      return { ...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload };
     case AUTH_SUCCESS:
-      return {...state,msg:'',redirectTo:getRedirectPath(action.payload) , isAuth:true, ...action.payload}
+      return { ...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload }
     case LOAD_DATA:
-      return { ...state,  ...action.payload };
+      return { ...state, ...action.payload };
     case ERROR_MSG:
       return { ...state, isAuth: false, msg: action.msg };
     default:
@@ -40,8 +40,8 @@ export function user(state = initState, action) {
 }
 
 
-function loginSuccess(data){
-  return { type:'LOGIN_SUCCESS', payload:data};
+function loginSuccess(data) {
+  return { type: 'LOGIN_SUCCESS', payload: data };
 }
 
 function errorMsg(msg) {
@@ -52,12 +52,13 @@ function registerSuccess(data) {
   return { type: 'REGISTER_SUCCESS', payload: data };
 }
 
-function authSuccess(data){
-  return {type:'AUTH_SUCCESS',payload:data};
+function authSuccess(obj) {
+  const { pwd, ...data } = obj; //只保留除了 pwd 字段以外的其他字段数据
+  return { type: 'AUTH_SUCCESS', payload: data };
 }
 
-export function login({user, pwd}){
-  if(!user || !pwd){
+export function login({ user, pwd }) {
+  if (!user || !pwd) {
     errorMsg('用户名密码必须输入');
   }
   return dispatch => {
@@ -90,13 +91,13 @@ export function register({ user, pwd, repeatpwd, type }) {
   }
 }
 
-export function userinfo(){
-  axios.get('/user/info').then( res=>{
+export function userinfo() {
+  axios.get('/user/info').then(res => {
     //console.log(res);
-    if(res.status === 200){
-      if(res.data.code === 0){
+    if (res.status === 200) {
+      if (res.data.code === 0) {
         this.props.loadData(res.data.data)
-      }else{
+      } else {
         //console.log(this.props.history);
         this.props.history.push('/login');
       }
@@ -104,13 +105,13 @@ export function userinfo(){
   })
 }
 
-export function loadData(userinfo){
-  return {type:LOAD_DATA,payload:userinfo};
+export function loadData(userinfo) {
+  return { type: LOAD_DATA, payload: userinfo };
 }
 
-export function update(data){
-  return dispatch=>{
-    axios.post('/user/update', data).then( res=>{
+export function update(data) {
+  return dispatch => {
+    axios.post('/user/update', data).then(res => {
       if (res.status === 200 && res.data.code === 0) {
         dispatch(authSuccess(res.data.data));
       } else {

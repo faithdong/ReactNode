@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-02-27 21:15:04 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-02-28 15:50:40
+ * @Last Modified time: 2019-03-05 16:34:55
  */
 
 
@@ -17,7 +17,7 @@ const models = {
     'user': { type: String, require: true },
     'pwd': { type: String, require: true },
     'type': { type: String, require: true },
-    'avator': { type: String }, //头像
+    'avatar': { type: String }, //头像
     'desc': { type: String }, //个人简介
     'title': { type: String },　//职位
     'money': { type: String },  // 工资

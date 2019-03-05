@@ -29,6 +29,7 @@ import GeniusInfo from './container/geniusinfo/geniusinfo';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 import  AuthRoute from './component/authroute/authroute';
 import './index.css';
+import Dashboard from './component/dashboard/dashboard';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
@@ -46,12 +47,13 @@ ReactDom.render(
       <BrowserRouter>
         <div>
           <AuthRoute></AuthRoute>
-          <Switch>
-          <Route path='/geniusinfo' exact component={GeniusInfo}></Route>
-          <Route path='/bossinfo' exact component={BossInfo}></Route>
-          <Route path='/login' exact component={Login}></Route>
-          <Route path='/register'  exact component={Register}></Route>
-          </Switch>
+            <Switch>
+              <Route path='/geniusinfo'  component={GeniusInfo}></Route>
+              <Route path='/bossinfo'  component={BossInfo}></Route>
+              <Route path='/login'  component={Login}></Route>
+              <Route path='/register'   component={Register}></Route>
+              <Route   component={Dashboard}></Route>
+            </Switch>
         </div>
       </BrowserRouter>
     </Provider>

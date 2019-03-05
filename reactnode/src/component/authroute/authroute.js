@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2019-02-27 20:44:40 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2019-03-04 18:13:11
+ * @Last Modified time: 2019-03-05 11:52:19
  */
 
 
@@ -32,7 +32,7 @@ class AuthRoute extends React.Component {
           this.props.loadData(res.data.data);
 				}else{
 					//console.log(this.props.history);
-					this.props.history.push('/login');
+					//this.props.history.push('/login');
 				}
 			}
 		})
